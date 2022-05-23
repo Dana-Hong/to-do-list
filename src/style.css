@@ -1,0 +1,129 @@
+:root {
+    --project-title: 5rem;
+    --project-description: 2.5rem;
+}
+
+*, *::after, *::backdrop {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: solid red 2px;
+}
+
+
+body {
+    height: 100vh;
+}
+
+.dashboard {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+}
+
+/* SIDEMENU */
+
+.side-menu {
+    background-color: grey;
+    position: relative;
+    display: grid;
+    grid-template-rows: 2fr 4fr 8fr 1fr;
+}
+
+.side-menu-title {
+    text-align: center;
+}
+
+/* Logo */
+
+/* Notebook List */
+
+
+/* Project List */
+
+
+
+
+/* Project area */
+
+.project-container {
+    font-size: var(--project-title);
+}
+
+.project-title {
+    height: 6rem;
+    width: 100%;
+    font-size: var(--project-title);
+}
+
+.project-description {
+    font-size: var(--project-description);
+    margin: 1rem 0;
+}
+
+/* Notes Section */
+
+.note-container {
+    height: 100%;
+}
+
+li {
+    list-style: none;
+    height: 100%;
+}
+
+.note {
+    padding: 0 1rem;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    height: 2rem;
+    width: 2rem;
+}
+
+/*
+input[type="checkbox"]::before {
+    content: "✔";
+    font-size: 1.2em;
+    visibility: hidden;
+}
+
+input[type="checkbox"]:checked::before {
+    Use `visibility` instead of `display` to avoid recalculating layout
+    visibility: visible;
+}
+*/
+
+input[type="checkbox"]:checked {
+    background-color: grey;
+    /* visibility: hidden; */
+}
+
+.new-note-input {
+    height: 2rem;
+    padding: 0;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.5rem;
+}
+
+.new-note-input:focus {
+    background-color: rebeccapurple;
+}
+
+.side-menu-add-project-btn {
+    height: 4rem;
+    width: 4rem;
+    font-size: 3rem;
+    border-radius: 50%;
+    justify-self: center;
+    align-self: center;
+}
+
+/* Modal */
+

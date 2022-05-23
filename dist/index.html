@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do List</title>
+    <link rel="stylesheet" href="../src/style.css">
+    <script type="module" src="../src/index.js"></script>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="side-menu">
+            <div class="logo">Logo</div>
+            <div class="side-menu-container">
+                <p class="side-menu-title">Notebooks</p>
+                <ul class="notebook-list">
+                    <li class="side-menu-item">Dana's Notebook</li>
+                </ul>
+            </div>
+            <div class="side-menu-container">
+                <p class="side-menu-title">Projects</p>
+                <ul class="project-list">
+                    <li class="side-menu-item">Project One</li>
+                    <li class="side-menu-item">Project Two</li>
+                </ul>
+            </div>
+            <button class="side-menu-add-project-btn">+</button>
+        </div>
+        <div class="project-container">
+            <div class="project-title">Project One</div>
+            <div class="project-description">Description about the project</div>
+            <div class="note-container">
+                <ul class="note-list">
+                    <li class="note">
+                        <input type="checkbox" class="checkbox">
+                        <div class="note-text">Completed Task</div>
+                    </li>
+                    <li class="note">
+                        <input type="checkbox" class="checkbox">
+                        <div class="note-text">Task 1</div>
+                    </li>
+                    <li class="note">
+                        <input type="checkbox" class="checkbox">
+                        <div class="note-text">Task 2</div>
+                    </li>
+                    <li class="note">
+                        <input type="checkbox" class="checkbox">
+                        <div class="note-text">Task 4</div>
+                    </li>
+                </ul>
+                <ul class="note-list">
+                    <li class="note">
+                        <input type="checkbox" class="checkbox">
+                        <input type="text" class="new-note-input note">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
