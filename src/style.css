@@ -30,7 +30,7 @@ textarea {
 
 /* SIDEMENU */
 
-.side-menu {
+.side-menu-container {
     background-color: grey;
     position: relative;
     display: grid;

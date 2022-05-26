@@ -1,4 +1,4 @@
-export default class Project {
+class Project {
     constructor(id, title, description) {
         this.id = id;
         this.title = title;
@@ -6,3 +6,11 @@ export default class Project {
     }
 }
 
+const createNewProjectInstance = () => {
+    const project = new Project(null, 'Untitled', 'None');
+    return project;
+}
+
+let projectStorage = [];
+
+export { createNewProjectInstance, projectStorage };
