@@ -54,7 +54,7 @@ const createProjectDiv = () => {
 
 const createTitle = () => {
     const titleContainer = create('div', 'title-container');
-    const newDate = format(Date.now());
+    const newDate = format(Date.now(), 'yyyy-MM-dd');
     console.log(newDate);
     const title = create('textarea', 'project-title');
     title.placeholder = 'Untitled Project';

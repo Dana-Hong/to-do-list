@@ -5,6 +5,13 @@
     --background: rgb(39, 39, 39);
 }
 
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('../Comfortaa-Regular.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
 *, *::after, *::backdrop {
     box-sizing: border-box;
     margin: 0;
@@ -27,6 +34,7 @@ textarea {
     color: white;
     font-family: 'Comfortaa', cursive;
     resize: none;
+    overflow: hidden;
     background-color: var(--background);
     border: none;
 }
