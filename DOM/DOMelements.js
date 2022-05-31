@@ -1,4 +1,14 @@
 import { create, select, updateDOM, toggleStyle, increaseSize } from "./DOMfunctions.js";
+import { 
+    compareAsc,
+    format,
+    isToday,
+    isThisWeek,
+    isBefore,
+    endOfToday,
+    add,
+    getDate
+     } from '../node_modules/date-fns';
 
 const createDashBoard = () => {
     const dashboard = create('div', 'dashboard');
@@ -43,9 +53,13 @@ const createProjectDiv = () => {
 }
 
 const createTitle = () => {
+    const titleContainer = create('div', 'title-container');
+    const newDate = format(Date.now());
+    console.log(newDate);
     const title = create('textarea', 'project-title');
     title.placeholder = 'Untitled Project';
-    title.addEventListener('keydown', increaseSize);
+    // title.addEventListener('keydown', increaseSize);
+    title.oninput = increaseSize;
     title.addEventListener('keyup', updateDOM);
     return title;
 }
@@ -82,12 +96,13 @@ const createNewNote = () => {
     const checkbox = create('input', 'checkbox');
     checkbox.addEventListener('click', toggleStyle);
     checkbox.addEventListener('keydown', toggleStyle);
-    const text = create('input', 'new-note-input');
+    const text = create('textarea', 'new-note-input');
     text.addEventListener('keyup', (event) => {
         const noteList = select('.note-list')
         if ((event.target.parentElement === event.target.parentElement.parentElement.lastElementChild) && event.key === 'Enter' && event.target.value) {
             noteList.append(createNewNote(event));
             noteList.lastElementChild.lastElementChild.focus();
+            console.log(event.target.value);
         } else if ((event.key === 'Backspace') && !event.target.value) {
             if (noteList.children.length > 1) {
                 noteList.lastElementChild.remove();
@@ -97,6 +112,7 @@ const createNewNote = () => {
             }
         }
     });
+    text.oninput = increaseSize;
     checkbox.type = 'checkbox';
     textBox.append(checkbox, text);
     return textBox;

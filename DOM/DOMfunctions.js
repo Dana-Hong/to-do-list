@@ -25,10 +25,12 @@ function select(querySelector) {
 }
 
 const increaseSize = (event) => {
-    if (event.target === select('.project-title')) {
-        event.target.style.height = "6rem";
-    }
-    event.target.style.height = event.target.scrollHeight + "px";
+    // if (event.target === select('.project-title')) {
+    //     event.target.style.height = "6rem";
+    // }
+    event.target.style.scrollHeight = "2rem";
+    event.target.style.height = Math.min(event.target.scrollHeight, 200) + "px";
+    // event.target.style.height = event.target.scrollHeight + "px";
 }
 
 const toggleStyle = (event) => {
