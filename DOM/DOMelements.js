@@ -8,7 +8,7 @@ import {
     endOfToday,
     add,
     getDate
-     } from '../node_modules/date-fns';
+    } from '../node_modules/date-fns';
 
 const createDashBoard = () => {
     const dashboard = create('div', 'dashboard');
@@ -54,10 +54,15 @@ const createProjectDiv = () => {
 
 const createTitle = () => {
     const titleContainer = create('div', 'title-container');
-    const newDate = format(Date.now(), 'yyyy-MM-dd');
-    console.log(newDate);
     const title = create('textarea', 'project-title');
     title.placeholder = 'Untitled Project';
+    title.addEventListener('keydown', (event) => {
+        if (event.key === "Tab" || event.key === "Enter") {
+            event.preventDefault();
+            select('.project-description').focus();
+        }
+        console.log(event.key);
+    })
     // title.addEventListener('keydown', increaseSize);
     title.oninput = increaseSize;
     title.addEventListener('keyup', updateDOM);
@@ -68,7 +73,7 @@ const createNoteContainer = () => {
     const noteContainer = create('div', 'note-container');
     const note = createNewNote();
     const noteList = create('ul', 'note-list');
-    note.lastElementChild.placeholder = "What do you need to do today?";
+    note.children[1].placeholder = "What do you need to do today?";
     noteList.append(note);
     noteContainer.addEventListener('click', (event) => {
         if (event.target === select('.note-container')) {
@@ -86,35 +91,55 @@ const createNoteContainer = () => {
 const createDescription = () => {
     const description = create('textarea', 'project-description');
     description.placeholder = 'Description';
+    description.addEventListener('keydown', (event) => {
+        if (event.key === "Enter" || event.key === "Tab") {
+            event.preventDefault();
+            select('.note-list').firstElementChild.children[1].focus();
+        }
+    })
     description.addEventListener('keydown', increaseSize);
     description.maxLength = 210;
     return description;
 }
 
+const handleKeyboard = (event) => {
+    const noteList = select('.note-list');
+    if (event.shiftKey) {
+    } else if ((event.key === "Enter" || event.key === "Tab")) {
+        if (event.target === noteList.lastElementChild.children[1]) {
+            event.preventDefault();
+            noteList.append(createNewNote());
+            noteList.lastElementChild.children[1].focus();
+        } else {
+            event.target.parentElement.nextElementSibling.focus();
+        }
+    } else if ((event.key === 'Backspace') && !event.target.value) {
+        if (noteList.children.length > 1) {
+            noteList.lastElementChild.remove();
+            noteList.lastElementChild.children[1].focus();
+        } else {
+            noteList.lastElementChild.children[1].focus();
+        }
+    }
+}
+
 const createNewNote = () => {
     const textBox = create('li', 'note');
     const checkbox = create('input', 'checkbox');
+    const time = create('div', 'time');
+    time.textContent = format(new Date, "MM-dd-yyyy");
     checkbox.addEventListener('click', toggleStyle);
     checkbox.addEventListener('keydown', toggleStyle);
     const text = create('textarea', 'new-note-input');
-    text.addEventListener('keyup', (event) => {
-        const noteList = select('.note-list')
-        if ((event.target.parentElement === event.target.parentElement.parentElement.lastElementChild) && event.key === 'Enter' && event.target.value) {
-            noteList.append(createNewNote(event));
-            noteList.lastElementChild.lastElementChild.focus();
-            console.log(event.target.value);
-        } else if ((event.key === 'Backspace') && !event.target.value) {
-            if (noteList.children.length > 1) {
-                noteList.lastElementChild.remove();
-                noteList.lastElementChild.lastElementChild.focus();
-            } else {
-                noteList.lastElementChild.lastElementChild.focus();
-            }
+    text.addEventListener('keydown', handleKeyboard);
+    text.addEventListener('focus', (event) => {
+        if (!event.target.value) {
+            event.target.style.height = select('.checkbox').style.height;
         }
-    });
+    })
     text.oninput = increaseSize;
     checkbox.type = 'checkbox';
-    textBox.append(checkbox, text);
+    textBox.append(checkbox, text, time);
     return textBox;
 }
 
